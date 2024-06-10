@@ -15,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\UserRepository::class, \App\Repositories\Implement\UserRepositoryImpl::class);
         $this->app->bind(\App\Repositories\CommunityProfileRepository::class, \App\Repositories\Implement\CommunityProfileRepositoryImpl::class);
         $this->app->bind(\App\Repositories\PartnerRepository::class, \App\Repositories\Implement\PartnerRepositoryImpl::class);
+        $this->app->bind(\App\Repositories\TeamRepository::class, \App\Repositories\Implement\TeamRepositoryImpl::class);
     }
 
     /**

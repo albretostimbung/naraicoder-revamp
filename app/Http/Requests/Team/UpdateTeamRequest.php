@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\Team;
 
 use App\Helpers\ResponseFormatter;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class RegisterRequest extends FormRequest
+class UpdateTeamRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,13 +25,10 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'major' => ['required', 'string'],
-            'address' => ['required', 'string'],
-            'occupation' => ['required', 'string'],
-            'avatar' => ['nullable', 'string'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => ['required', 'string', 'max:50'],
+            'email' => ['required', 'email'],
+            'role' => ['nullable', 'string'],
+            'image' => ['required', 'string', 'max:255'],
         ];
     }
 
@@ -47,9 +44,8 @@ class RegisterRequest extends FormRequest
             'address.required' => 'Address is required',
             'occupation.required' => 'Occupation is required',
             'email.required' => 'Email is required',
-            'password.required' => 'Password is required',
-            'password.min' => 'Password must be at least 8 characters',
-            'password.confirmed' => 'Password confirmation does not match',
+            'email.email' => 'Email must be a valid email address',
+            'email.unique' => 'Email has already been taken',
         ];
     }
 

@@ -27,7 +27,7 @@ class StorePartnerRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:50'],
             'website' => ['required', 'string', 'max:100'],
-            'image' => ['required', 'string', 'max:100'],
+            'image' => ['required', 'string', 'max:255'],
         ];
     }
 
