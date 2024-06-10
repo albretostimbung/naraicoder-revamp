@@ -4,20 +4,20 @@ namespace App\Http\Controllers\Api\V1\Member;
 
 use App\Http\Requests\Member\UpdateMemberRequest;
 use Illuminate\Http\Request;
-use App\Services\MemberService;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
+use App\Repositories\UserRepository;
 
 class MemberController extends Controller
 {
-    private $memberService;
-    public function __construct(MemberService $memberService)
+    private $userRepository;
+    public function __construct(UserRepository $userRepository)
     {
-        $this->memberService = $memberService;
+        $this->userRepository = $userRepository;
     }
     public function index()
     {
-        return ResponseFormatter::success($this->memberService->getAll());
+        return ResponseFormatter::success($this->userRepository->getAll());
     }
 
     /**
@@ -33,7 +33,7 @@ class MemberController extends Controller
      */
     public function show(string $id)
     {
-        return ResponseFormatter::success($this->memberService->getById($id));
+        return ResponseFormatter::success($this->userRepository->getById($id));
     }
 
     /**
@@ -41,7 +41,7 @@ class MemberController extends Controller
      */
     public function update(UpdateMemberRequest $request, string $id)
     {
-        return ResponseFormatter::success($this->memberService->update($id, $request->validated()));
+        return ResponseFormatter::success($this->userRepository->update($id, $request->validated()));
     }
 
     /**
@@ -49,6 +49,6 @@ class MemberController extends Controller
      */
     public function destroy(string $id)
     {
-        return ResponseFormatter::success($this->memberService->delete($id));
+        return ResponseFormatter::success($this->userRepository->delete($id));
     }
 }
