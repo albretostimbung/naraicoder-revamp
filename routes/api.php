@@ -10,6 +10,7 @@ Route::post('/users', V1\Auth\RegisterController::class);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/members', V1\Member\MemberController::class);
+    Route::apiResource('/partners', V1\Partner\PartnerController::class);
     Route::get('/community-profiles', V1\CommunityProfile\CommunityProfileController::class);
 
     Route::post('/logout', V1\Auth\LogoutController::class);

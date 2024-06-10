@@ -15,7 +15,9 @@ class CommunityProfileSeeder extends Seeder
     {
         $data = [
             'social_media' => json_encode([
-                'facebook' => 'https://www.facebook.com/',
+                'instagram' => 'https://www.instagram.com/naraicoder/',
+                'telegram' => 'https://t.me/naraicoder/',
+                'email' => 'naraicoder@gmail.com',
             ]),
             'logo' => 'logo.svg',
             'about' => 'Narai Coder adalah komunitas non-profit bagi pegiat dan pembelajar Teknologi Informasi di Provinsi Kalimantan Tengah dengan visi menjadi wadah pengembangan minat dan bakat TI di Kalimantan Tengah. NaraiCoder dibentuk sebagai wadah berkumpul dan berbagi wawasan para programmer/developer serta digital enthusiast di wilayah Kalimantan Tengah, juga berupaya untuk mengembangkan future tech talent di wilayah Kalteng dan sekitarnya.'
