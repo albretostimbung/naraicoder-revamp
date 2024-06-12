@@ -16,6 +16,8 @@ Route::prefix('auth')->group(function () {
     Route::post('/logout', V1\Auth\LogoutController::class)->middleware('auth:sanctum');
 });
 
+Route::post('/events/register', V1\Event\RegisterEventController::class);
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/articles', V1\Article\ArticleController::class);
     Route::apiResource('/members', V1\Member\MemberController::class);
