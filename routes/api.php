@@ -1,4 +1,10 @@
 <?php
+/**
+ * @OA\Info(
+ *     title="API Documentation",
+ *     version="1.0.0"
+ * )
+ */
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\V1;
