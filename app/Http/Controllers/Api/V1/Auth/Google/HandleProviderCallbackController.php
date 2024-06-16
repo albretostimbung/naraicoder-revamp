@@ -21,6 +21,6 @@ class HandleProviderCallbackController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return redirect()->away($this->oauthService->googleCallback());
+        return ResponseFormatter::success($this->oauthService->googleCallback());
     }
 }
