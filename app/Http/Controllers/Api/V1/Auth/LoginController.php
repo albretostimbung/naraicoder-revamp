@@ -68,6 +68,12 @@ class LoginController extends Controller
      */
     public function __invoke(LoginRequest $request)
     {
-        return ResponseFormatter::success($this->authService->login($request->validated()));
+        $result = $this->authService->login($request->validated());
+
+        if (!$result) {
+            return ResponseFormatter::error($result, 401);
+        }
+
+        return ResponseFormatter::success($result);
     }
 }
