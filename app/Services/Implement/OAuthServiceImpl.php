@@ -29,12 +29,8 @@ class OAuthServiceImpl implements OAuthService
         ], $data);
         Auth::login($user, true);
 
-        $user = Auth::user();
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $token = Auth::user()->createToken('auth_token')->plainTextToken;
 
-        return [
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-        ];
+        return config('services.frontend.app_url') . '/callback?access_token=' . urlencode($token);
     }
 }
