@@ -23,8 +23,8 @@ class AuthServiceImpl implements AuthService
 
     public function login(array $data)
     {
-        if (! Auth::attempt($data)) {
-            return 'Invalid login details';
+        if (!Auth::attempt($data)) {
+            return false;
         }
 
         $user = Auth::user();

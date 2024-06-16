@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Api\V1\Auth;
 
+use App\Services\AuthService;
+use Illuminate\Http\Response;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
-use App\Services\AuthService;
 
 /**
  * @OA\Post(
@@ -71,9 +72,10 @@ class LoginController extends Controller
         $result = $this->authService->login($request->validated());
 
         if (!$result) {
-            return ResponseFormatter::error($result, 401);
+            return ResponseFormatter::error('Unauthorized', Response::HTTP_UNAUTHORIZED);
         }
 
         return ResponseFormatter::success($result);
+
     }
 }
