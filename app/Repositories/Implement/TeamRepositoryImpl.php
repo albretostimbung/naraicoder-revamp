@@ -1,11 +1,13 @@
 <?php
+
 namespace App\Repositories\Implement;
 
 use App\Constants\GlobalConstant;
 use App\Models\Team;
 use App\Repositories\TeamRepository;
 
-class TeamRepositoryImpl implements TeamRepository {
+class TeamRepositoryImpl implements TeamRepository
+{
     private $model;
 
     public function __construct(Team $model)
@@ -22,7 +24,7 @@ class TeamRepositoryImpl implements TeamRepository {
     {
         $user = $this->model->find($id);
 
-        if (!$user) {
+        if (! $user) {
             return GlobalConstant::DATA_NOT_FOUND;
         }
 
@@ -38,7 +40,7 @@ class TeamRepositoryImpl implements TeamRepository {
     {
         $user = $this->model->find($id);
 
-        if (!$user) {
+        if (! $user) {
             return GlobalConstant::DATA_NOT_FOUND;
         }
 
@@ -51,7 +53,7 @@ class TeamRepositoryImpl implements TeamRepository {
     {
         $user = $this->model->find($id);
 
-        if (!$user) {
+        if (! $user) {
             return GlobalConstant::DATA_NOT_FOUND;
         }
 

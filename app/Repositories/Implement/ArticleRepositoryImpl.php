@@ -1,11 +1,13 @@
 <?php
+
 namespace App\Repositories\Implement;
 
 use App\Constants\GlobalConstant;
 use App\Models\Article;
 use App\Repositories\ArticleRepository;
 
-class ArticleRepositoryImpl implements ArticleRepository {
+class ArticleRepositoryImpl implements ArticleRepository
+{
     private $model;
 
     public function __construct(Article $model)
@@ -22,7 +24,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
     {
         $user = $this->model->find($id);
 
-        if (!$user) {
+        if (! $user) {
             return GlobalConstant::DATA_NOT_FOUND;
         }
 
@@ -38,7 +40,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
     {
         $user = $this->model->find($id);
 
-        if (!$user) {
+        if (! $user) {
             return GlobalConstant::DATA_NOT_FOUND;
         }
 
@@ -51,7 +53,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
     {
         $user = $this->model->find($id);
 
-        if (!$user) {
+        if (! $user) {
             return GlobalConstant::DATA_NOT_FOUND;
         }
 

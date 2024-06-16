@@ -1,9 +1,9 @@
 <?php
-namespace App\Services;
 
-use Illuminate\Http\Request;
+namespace App\Services;
 
 interface EventService
 {
     public function register(array $data);
+    public function delete($id);
 }

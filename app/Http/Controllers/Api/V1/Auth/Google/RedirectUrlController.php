@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Api\V1\Auth\Google;
 
-use Illuminate\Http\Request;
-use App\Services\AuthService;
-use App\Services\OAuthService;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
+use App\Services\OAuthService;
+use Illuminate\Http\Request;
 
 class RedirectUrlController extends Controller
 {
@@ -17,6 +15,7 @@ class RedirectUrlController extends Controller
     {
         $this->oauthService = $oauthService;
     }
+
     /**
      * Handle the incoming request.
      */

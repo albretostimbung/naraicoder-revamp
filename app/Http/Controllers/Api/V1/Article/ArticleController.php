@@ -2,26 +2,29 @@
 
 namespace App\Http\Controllers\Api\V1\Article;
 
-use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Article\StoreArticleRequest;
 use App\Http\Requests\Article\UpdateArticleRequest;
+use App\Http\Resources\Article\ArticleResource;
 use App\Repositories\ArticleRepository;
 use App\Services\ArticleService;
 
 class ArticleController extends Controller
 {
     private $articleRepository;
+
     private $articleService;
+
     public function __construct(ArticleRepository $articleRepository, ArticleService $articleService)
     {
         $this->articleRepository = $articleRepository;
         $this->articleService = $articleService;
     }
+
     public function index()
     {
-        return ResponseFormatter::success($this->articleRepository->getAll());
+        return ResponseFormatter::success(ArticleResource::collection($this->articleRepository->getAll()));
     }
 
     /**
@@ -29,7 +32,7 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-        return ResponseFormatter::success($this->articleService->create($request->validated()));
+        return ResponseFormatter::success(ArticleResource::make($this->articleService->create($request->validated())));
     }
 
     /**
@@ -37,7 +40,7 @@ class ArticleController extends Controller
      */
     public function show(string $id)
     {
-        return ResponseFormatter::success($this->articleRepository->getById($id));
+        return ResponseFormatter::success(ArticleResource::make($this->articleRepository->getById($id)));
     }
 
     /**
@@ -45,7 +48,7 @@ class ArticleController extends Controller
      */
     public function update(UpdateArticleRequest $request, string $id)
     {
-        return ResponseFormatter::success($this->articleService->update($id, $request->validated()));
+        return ResponseFormatter::success(ArticleResource::make($this->articleService->update($id, $request->validated())));
     }
 
     /**

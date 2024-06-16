@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api\V1\CommunityProfile;
 
+use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CommunityProfile\CommunityProfileResource;
 use App\Repositories\CommunityProfileRepository;
 use Illuminate\Http\Request;
 
@@ -20,6 +22,6 @@ class CommunityProfileController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return $this->communityProfileRepository->getFirst();
+        return ResponseFormatter::success(CommunityProfileResource::make($this->communityProfileRepository->getFirst()));
     }
 }

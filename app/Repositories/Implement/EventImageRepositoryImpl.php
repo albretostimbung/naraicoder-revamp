@@ -1,14 +1,16 @@
 <?php
+
 namespace App\Repositories\Implement;
 
 use App\Constants\GlobalConstant;
-use App\Models\EventImages;
-use App\Repositories\EventImagesRepository;
+use App\Models\EventImage;
+use App\Repositories\EventImageRepository;
 
-class EventImagesRepositoryImpl implements EventImagesRepository {
+class EventImageRepositoryImpl implements EventImageRepository
+{
     private $model;
 
-    public function __construct(EventImages $model)
+    public function __construct(EventImage $model)
     {
         $this->model = $model;
     }
@@ -22,7 +24,7 @@ class EventImagesRepositoryImpl implements EventImagesRepository {
     {
         $user = $this->model->find($id);
 
-        if (!$user) {
+        if (! $user) {
             return GlobalConstant::DATA_NOT_FOUND;
         }
 

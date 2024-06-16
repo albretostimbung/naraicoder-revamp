@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\PartnerRepository::class, \App\Repositories\Implement\PartnerRepositoryImpl::class);
         $this->app->bind(\App\Repositories\TeamRepository::class, \App\Repositories\Implement\TeamRepositoryImpl::class);
         $this->app->bind(\App\Repositories\EventRepository::class, \App\Repositories\Implement\EventRepositoryImpl::class);
-        $this->app->bind(\App\Repositories\EventImagesRepository::class, \App\Repositories\Implement\EventImagesRepositoryImpl::class);
+        $this->app->bind(\App\Repositories\EventImageRepository::class, \App\Repositories\Implement\EventImageRepositoryImpl::class);
         $this->app->bind(\App\Repositories\ArticleRepository::class, \App\Repositories\Implement\ArticleRepositoryImpl::class);
     }
 

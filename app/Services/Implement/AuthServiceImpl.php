@@ -1,10 +1,10 @@
 <?php
+
 namespace App\Services\Implement;
 
-use App\Models\User;
-use Illuminate\Http\Request;
-use App\Services\AuthService;
 use App\Repositories\UserRepository;
+use App\Services\AuthService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthServiceImpl implements AuthService
@@ -23,7 +23,7 @@ class AuthServiceImpl implements AuthService
 
     public function login(array $data)
     {
-        if (!Auth::attempt($data)) {
+        if (! Auth::attempt($data)) {
             return 'Invalid login details';
         }
 

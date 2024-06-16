@@ -4,5 +4,5 @@ namespace App\Constants;
 
 class GlobalConstant
 {
-    const DATA_NOT_FOUND = "Data not found";
+    const DATA_NOT_FOUND = 'Data not found';
 }

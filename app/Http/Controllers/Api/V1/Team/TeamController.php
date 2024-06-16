@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers\Api\V1\Team;
 
-use App\Http\Requests\Team\UpdateTeamRequest;
-use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Team\StoreTeamRequest;
+use App\Http\Requests\Team\UpdateTeamRequest;
+use App\Http\Resources\Team\TeamResource;
 use App\Repositories\TeamRepository;
 
 class TeamController extends Controller
 {
     private $teamRepository;
+
     public function __construct(TeamRepository $teamRepository)
     {
         $this->teamRepository = $teamRepository;
     }
+
     public function index()
     {
-        return ResponseFormatter::success($this->teamRepository->getAll());
+        return ResponseFormatter::success(TeamResource::collection($this->teamRepository->getAll()));
     }
 
     /**
@@ -26,7 +28,7 @@ class TeamController extends Controller
      */
     public function store(StoreTeamRequest $request)
     {
-        return ResponseFormatter::success($this->teamRepository->create($request->validated()));
+        return ResponseFormatter::success(TeamResource::make($this->teamRepository->create($request->validated())));
     }
 
     /**
@@ -34,7 +36,7 @@ class TeamController extends Controller
      */
     public function show(string $id)
     {
-        return ResponseFormatter::success($this->teamRepository->getById($id));
+        return ResponseFormatter::success(TeamResource::make($this->teamRepository->getById($id)));
     }
 
     /**
@@ -42,7 +44,7 @@ class TeamController extends Controller
      */
     public function update(UpdateTeamRequest $request, string $id)
     {
-        return ResponseFormatter::success($this->teamRepository->update($id, $request->validated()));
+        return ResponseFormatter::success(TeamResource::make($this->teamRepository->update($id, $request->validated())));
     }
 
     /**

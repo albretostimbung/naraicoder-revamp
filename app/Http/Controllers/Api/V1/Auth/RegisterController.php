@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api\V1\Auth;
 
-use Illuminate\Http\Request;
-use App\Services\AuthService;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Resources\Auth\UserResource;
+use App\Services\AuthService;
 
 /**
  * @OA\Post(
@@ -14,11 +14,14 @@ use App\Http\Requests\Auth\RegisterRequest;
  *     tags={"Auth"},
  *     summary="Register a new member",
  *     description="Registers a new member with the provided credentials",
+ *
  *     @OA\RequestBody(
  *         description="Member registration data",
  *         required=true,
+ *
  *         @OA\JsonContent(
  *             type="object",
+ *
  *             @OA\Property(
  *                 property="name",
  *                 type="string",
@@ -44,22 +47,25 @@ use App\Http\Requests\Auth\RegisterRequest;
  *             )
  *         )
  *     ),
+ *
  *     @OA\Response(
  *         response=200,
  *         description="User registered successfully",
+ *
  *         @OA\JsonContent(
  *             type="object",
+ *
  *             @OA\Property(property="success", type="boolean"),
  *             @OA\Property(property="data")
  *         )
  *     ),
+ *
  *     @OA\Response(
  *         response=422,
  *         description="Validation error"
  *     )
  * )
  */
-
 class RegisterController extends Controller
 {
     private $authService;
@@ -71,6 +77,6 @@ class RegisterController extends Controller
 
     public function __invoke(RegisterRequest $request)
     {
-        return ResponseFormatter::success($this->authService->register($request->validated()));
+        return ResponseFormatter::success(UserResource::make($this->authService->register($request->validated())));
     }
 }

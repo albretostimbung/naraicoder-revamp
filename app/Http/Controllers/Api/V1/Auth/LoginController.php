@@ -13,11 +13,14 @@ use App\Services\AuthService;
  *     tags={"Auth"},
  *     summary="Login member",
  *     description="Login with the provided credentials",
+ *
  *     @OA\RequestBody(
  *         description="Login member",
  *         required=true,
+ *
  *         @OA\JsonContent(
  *             type="object",
+ *
  *             @OA\Property(
  *                 property="email",
  *                 type="string",
@@ -32,22 +35,25 @@ use App\Services\AuthService;
  *             )
  *         )
  *     ),
+ *
  *     @OA\Response(
  *         response=200,
  *         description="Login successfully",
+ *
  *         @OA\JsonContent(
  *             type="object",
+ *
  *             @OA\Property(property="success", type="boolean"),
  *             @OA\Property(property="data")
  *         )
  *     ),
+ *
  *     @OA\Response(
  *         response=422,
  *         description="Validation error"
  *     )
  * )
  */
-
 class LoginController extends Controller
 {
     private $authService;
@@ -56,6 +62,7 @@ class LoginController extends Controller
     {
         $this->authService = $authService;
     }
+
     /**
      * Handle the incoming request.
      */

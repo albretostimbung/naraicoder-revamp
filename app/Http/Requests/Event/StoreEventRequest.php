@@ -3,8 +3,8 @@
 namespace App\Http\Requests\Event;
 
 use App\Helpers\ResponseFormatter;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StoreEventRequest extends FormRequest
@@ -30,7 +30,7 @@ class StoreEventRequest extends FormRequest
             'title' => ['required', 'string', 'max:100'],
             'description' => ['required', 'string'],
             'speaker' => ['required', 'string', 'max:100'],
-            'images' => ['required', 'array']
+            'images' => ['required', 'array'],
         ];
     }
 
@@ -39,14 +39,15 @@ class StoreEventRequest extends FormRequest
      *
      * @return array<string, string>
      */
-    public function messages(): array {
+    public function messages(): array
+    {
         return [
             'name.required' => 'Name is required',
             'email.required' => 'Email is required',
             'title.required' => 'Title is required',
             'description.required' => 'Description is required',
             'speaker.required' => 'Speaker is required',
-            'image.required' => 'Image is required'
+            'image.required' => 'Image is required',
         ];
     }
 

@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Helpers;
+
 use App\Constants\HttpStatusCodes;
 
 class ResponseFormatter
 {
-
     protected static $statusCodeOk;
+
     protected static $statusMessage;
 
     public static function setDefaultStatusCode()
@@ -14,8 +15,6 @@ class ResponseFormatter
         self::$statusCodeOk = HttpStatusCodes::ok;
         self::$statusMessage = HttpStatusCodes::getMessage(self::$statusCodeOk);
     }
-
-
 
     public static function success($data = null, $totalPage = null, $currentPage = null)
     {
@@ -34,10 +33,10 @@ class ResponseFormatter
             $response['current_page'] = $currentPage;
         }
 
-        return response()->json($response, self::$statusCodeOk,);
+        return response()->json($response, self::$statusCodeOk);
     }
 
-    public static function error($message = null, $code)
+    public static function error($message, $code)
     {
         self::setDefaultStatusCode();
         $response = [
@@ -47,7 +46,7 @@ class ResponseFormatter
 
         ];
 
-        return response()->json($response, self::$statusCodeOk,);
+        return response()->json($response, self::$statusCodeOk);
     }
 
     public static function handleServiceException($exception)
@@ -62,7 +61,6 @@ class ResponseFormatter
             'data' => null,
         ];
 
-        return response()->json($response, self::$statusCodeOk,);
+        return response()->json($response, self::$statusCodeOk);
     }
-
 }

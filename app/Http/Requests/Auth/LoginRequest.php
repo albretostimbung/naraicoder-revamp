@@ -3,9 +3,9 @@
 namespace App\Http\Requests\Auth;
 
 use App\Helpers\ResponseFormatter;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Contracts\Validation\Validator;
 
 class LoginRequest extends FormRequest
 {
@@ -35,7 +35,8 @@ class LoginRequest extends FormRequest
      *
      * @return array<string, string>
      */
-    public function messages(): array {
+    public function messages(): array
+    {
         return [
             'email.required' => 'Email is required',
             'password.required' => 'Password is required',

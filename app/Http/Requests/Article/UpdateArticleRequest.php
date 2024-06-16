@@ -3,8 +3,8 @@
 namespace App\Http\Requests\Article;
 
 use App\Helpers\ResponseFormatter;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class UpdateArticleRequest extends FormRequest
@@ -36,7 +36,8 @@ class UpdateArticleRequest extends FormRequest
      *
      * @return array<string, string>
      */
-    public function messages(): array {
+    public function messages(): array
+    {
         return [
             'title.required' => 'Title is required',
             'title.string' => 'Title must be a string',

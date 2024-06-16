@@ -2,27 +2,29 @@
 
 namespace App\Http\Controllers\Api\V1\Event;
 
-use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
-use App\Repositories\UserRepository;
-use App\Repositories\EventRepository;
 use App\Http\Requests\Event\StoreEventRequest;
-use App\Http\Requests\Event\UpdateEventRequest;
+use App\Http\Resources\Event\EventResource;
+use App\Repositories\EventRepository;
 use App\Services\EventService;
+use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
     private $eventRepository;
+
     private $eventService;
+
     public function __construct(EventRepository $eventRepository, EventService $eventService)
     {
         $this->eventRepository = $eventRepository;
         $this->eventService = $eventService;
     }
+
     public function index()
     {
-        return ResponseFormatter::success($this->eventRepository->getAll());
+        return ResponseFormatter::success(EventResource::collection($this->eventRepository->getAll()));
     }
 
     /**
@@ -30,7 +32,7 @@ class EventController extends Controller
      */
     public function store(StoreEventRequest $request)
     {
-        return ResponseFormatter::success($this->eventService->register($request->validated()));
+        return ResponseFormatter::success(EventResource::make($this->eventService->register($request->validated())));
     }
 
     /**
@@ -38,7 +40,7 @@ class EventController extends Controller
      */
     public function show(string $id)
     {
-        return ResponseFormatter::success($this->eventRepository->getById($id));
+        return ResponseFormatter::success(EventResource::make($this->eventRepository->getById($id)));
     }
 
     /**
@@ -46,7 +48,7 @@ class EventController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // return ResponseFormatter::success($this->eventRepository->update($id, $request->validated()));
+        //
     }
 
     /**
@@ -54,6 +56,6 @@ class EventController extends Controller
      */
     public function destroy(string $id)
     {
-        return ResponseFormatter::success($this->eventRepository->delete($id));
+        return ResponseFormatter::success($this->eventService->delete($id));
     }
 }

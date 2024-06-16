@@ -1,11 +1,13 @@
 <?php
+
 namespace App\Repositories\Implement;
 
 use App\Constants\GlobalConstant;
 use App\Models\Partner;
 use App\Repositories\PartnerRepository;
 
-class PartnerRepositoryImpl implements PartnerRepository {
+class PartnerRepositoryImpl implements PartnerRepository
+{
     private $model;
 
     public function __construct(Partner $model)
@@ -22,7 +24,7 @@ class PartnerRepositoryImpl implements PartnerRepository {
     {
         $user = $this->model->find($id);
 
-        if (!$user) {
+        if (! $user) {
             return GlobalConstant::DATA_NOT_FOUND;
         }
 
@@ -38,7 +40,7 @@ class PartnerRepositoryImpl implements PartnerRepository {
     {
         $user = $this->model->find($id);
 
-        if (!$user) {
+        if (! $user) {
             return GlobalConstant::DATA_NOT_FOUND;
         }
 
@@ -51,7 +53,7 @@ class PartnerRepositoryImpl implements PartnerRepository {
     {
         $user = $this->model->find($id);
 
-        if (!$user) {
+        if (! $user) {
             return GlobalConstant::DATA_NOT_FOUND;
         }
 

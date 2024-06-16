@@ -1,11 +1,13 @@
 <?php
+
 namespace App\Repositories\Implement;
 
 use App\Constants\GlobalConstant;
 use App\Models\User;
 use App\Repositories\UserRepository;
 
-class UserRepositoryImpl implements UserRepository {
+class UserRepositoryImpl implements UserRepository
+{
     private $model;
 
     public function __construct(User $model)
@@ -22,7 +24,7 @@ class UserRepositoryImpl implements UserRepository {
     {
         $user = $this->model->find($id);
 
-        if (!$user) {
+        if (! $user) {
             return GlobalConstant::DATA_NOT_FOUND;
         }
 
@@ -38,7 +40,7 @@ class UserRepositoryImpl implements UserRepository {
     {
         $user = $this->model->find($id);
 
-        if (!$user) {
+        if (! $user) {
             return GlobalConstant::DATA_NOT_FOUND;
         }
 
@@ -51,7 +53,7 @@ class UserRepositoryImpl implements UserRepository {
     {
         $user = $this->model->find($id);
 
-        if (!$user) {
+        if (! $user) {
             return GlobalConstant::DATA_NOT_FOUND;
         }
 

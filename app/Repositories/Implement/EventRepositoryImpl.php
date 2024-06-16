@@ -1,11 +1,13 @@
 <?php
+
 namespace App\Repositories\Implement;
 
 use App\Constants\GlobalConstant;
 use App\Models\Event;
 use App\Repositories\EventRepository;
 
-class EventRepositoryImpl implements EventRepository {
+class EventRepositoryImpl implements EventRepository
+{
     private $model;
 
     public function __construct(Event $model)
@@ -22,7 +24,7 @@ class EventRepositoryImpl implements EventRepository {
     {
         $user = $this->model->find($id);
 
-        if (!$user) {
+        if (! $user) {
             return GlobalConstant::DATA_NOT_FOUND;
         }
 
@@ -38,7 +40,7 @@ class EventRepositoryImpl implements EventRepository {
     {
         $user = $this->model->find($id);
 
-        if (!$user) {
+        if (! $user) {
             return GlobalConstant::DATA_NOT_FOUND;
         }
 
@@ -51,7 +53,7 @@ class EventRepositoryImpl implements EventRepository {
     {
         $user = $this->model->find($id);
 
-        if (!$user) {
+        if (! $user) {
             return GlobalConstant::DATA_NOT_FOUND;
         }
 

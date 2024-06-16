@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api\V1\Auth;
 
-use Illuminate\Http\Request;
-use App\Services\AuthService;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
+use App\Services\AuthService;
+use Illuminate\Http\Request;
 
 class LogoutController extends Controller
 {
@@ -15,6 +15,7 @@ class LogoutController extends Controller
     {
         $this->authService = $authService;
     }
+
     /**
      * Handle the incoming request.
      */

@@ -1,6 +1,8 @@
 <?php
+
 namespace App\Repositories;
 
-interface CommunityProfileRepository {
+interface CommunityProfileRepository
+{
     public function getFirst();
 }

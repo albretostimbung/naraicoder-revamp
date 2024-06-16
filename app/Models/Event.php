@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\EventImage;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Event extends Model
 {
@@ -14,6 +15,10 @@ class Event extends Model
         'email',
         'title',
         'description',
-        'speaker'
+        'speaker',
     ];
+
+    public function eventImages() {
+        return $this->hasMany(EventImage::class);
+    }
 }

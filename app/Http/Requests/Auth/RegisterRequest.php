@@ -3,8 +3,8 @@
 namespace App\Http\Requests\Auth;
 
 use App\Helpers\ResponseFormatter;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class RegisterRequest extends FormRequest
@@ -40,7 +40,8 @@ class RegisterRequest extends FormRequest
      *
      * @return array<string, string>
      */
-    public function messages(): array {
+    public function messages(): array
+    {
         return [
             'name.required' => 'Name is required',
             'major.required' => 'Major is required',

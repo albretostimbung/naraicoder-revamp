@@ -1,7 +1,10 @@
 <?php
+
 namespace App\Repositories;
 
-interface EventImagesRepository {
+interface EventImageRepository
+{
     public function insert(array $data);
+
     public function getById($id);
 }

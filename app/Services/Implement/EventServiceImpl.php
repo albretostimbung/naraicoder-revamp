@@ -1,22 +1,20 @@
 <?php
+
 namespace App\Services\Implement;
 
-use App\Models\User;
-use Illuminate\Http\Request;
-use App\Services\AuthService;
-use App\Services\EventService;
-use Illuminate\Support\Facades\DB;
-use App\Repositories\UserRepository;
-use Illuminate\Support\Facades\Auth;
+use App\Repositories\EventImageRepository;
 use App\Repositories\EventRepository;
-use App\Repositories\EventImagesRepository;
+use App\Services\EventService;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class EventServiceImpl implements EventService
 {
     private $eventRepository;
+
     private $eventImagesRepository;
 
-    public function __construct(EventRepository $eventRepository, EventImagesRepository $eventImagesRepository)
+    public function __construct(EventRepository $eventRepository, EventImageRepository $eventImagesRepository)
     {
         $this->eventRepository = $eventRepository;
         $this->eventImagesRepository = $eventImagesRepository;
@@ -25,21 +23,37 @@ class EventServiceImpl implements EventService
     public function register(array $data)
     {
         return DB::transaction(function () use ($data) {
-            $event = $this->eventRepository->create($data);
+            try {
+                $event = $this->eventRepository->create($data);
 
-            $imagesData = [];
-            foreach ($data['images'] as $item) {
-                $imagesData[] = [
-                    'event_id' => $event->id,
-                    'image' => $item['image']
-                ];
+                $imagesData = [];
+                foreach ($data['images'] as $item) {
+                    $imagesData[] = [
+                        'event_id' => $event->id,
+                        'image' => $item['image'],
+                    ];
+                }
+
+                $this->eventImagesRepository->insert($imagesData);
+
+                return $event;
+            } catch (Exception $e) {
+                return $e->getMessage();
             }
+        });
+    }
 
-            $this->eventImagesRepository->insert($imagesData);
+    public function delete($id)
+    {
+        return DB::transaction(function () use ($id) {
+            try {
+                $event = $this->eventRepository->getById($id);
 
-            $eventArray = $event->toArray();
-
-            return array_merge($eventArray, ['images' => $imagesData]);
+                $event->eventImages()->delete();
+                $event->delete();
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
         });
     }
 }

@@ -1,10 +1,10 @@
 <?php
-namespace App\Services;
 
-use Illuminate\Http\Request;
+namespace App\Services;
 
 interface OAuthService
 {
     public function googleRedirect();
+
     public function googleCallback();
 }
