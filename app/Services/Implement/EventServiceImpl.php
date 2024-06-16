@@ -24,7 +24,7 @@ class EventServiceImpl implements EventService
 
     public function register(array $data)
     {
-        $result = DB::transaction(function () use ($data) {
+        return DB::transaction(function () use ($data) {
             $event = $this->eventRepository->create($data);
 
             $imagesData = [];
@@ -41,7 +41,5 @@ class EventServiceImpl implements EventService
 
             return array_merge($eventArray, ['images' => $imagesData]);
         });
-
-        return $result;
     }
 }

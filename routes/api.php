@@ -16,10 +16,11 @@ Route::prefix('auth')->group(function () {
     Route::post('/logout', V1\Auth\LogoutController::class)->middleware('auth:sanctum');
 });
 
-Route::post('/events/register', V1\Event\RegisterEventController::class);
-
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/articles', V1\Article\ArticleController::class);
+
+    Route::apiResource('/events', V1\Event\EventController::class);
+
     Route::apiResource('/members', V1\Member\MemberController::class);
     Route::apiResource('/partners', V1\Partner\PartnerController::class);
     Route::apiResource('/teams', V1\Team\TeamController::class);
