@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,6 +13,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@naraicoder.org',
+            'is_admin' => true,
+        ]);
+
         $this->call([
             CommunityProfileSeeder::class,
             PartnerSeeder::class,

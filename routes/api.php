@@ -19,9 +19,15 @@ Route::prefix('auth')->group(function () {
     Route::get('/google/callback', V1\Auth\Google\HandleProviderCallbackController::class);
 
     Route::post('/logout', V1\Auth\LogoutController::class)->middleware('auth:sanctum');
+
+    // autentikasi admin
+    Route::prefix('admin')->group(function () {
+        Route::post('/login', V1\Auth\Admin\LoginController::class);
+        Route::post('/logout', V1\Auth\LogoutController::class)->middleware(['auth:sanctum', 'isAdmin']);
+    });
 });
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware(['auth:sanctum', 'isAdmin'])->group(function () {
     Route::apiResource('/articles', V1\Article\ArticleController::class);
     Route::apiResource('/events', V1\Event\EventController::class);
     Route::apiResource('/members', V1\Member\MemberController::class);

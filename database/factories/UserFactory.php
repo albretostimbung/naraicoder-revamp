@@ -28,7 +28,7 @@ class UserFactory extends Factory
             'major' => fake()->text(10),
             'address' => fake()->streetAddress(),
             'occupation' => fake()->text(8),
-            'filename_profile_picture' => fake()->text(20),
+            'avatar' => fake()->text(20),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),

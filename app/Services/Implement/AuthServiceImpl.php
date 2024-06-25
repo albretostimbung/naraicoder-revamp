@@ -36,6 +36,26 @@ class AuthServiceImpl implements AuthService
         ];
     }
 
+    public function loginAdmin(array $data)
+    {
+        if (!Auth::attempt($data)) {
+            return false;
+        }
+
+        $user = Auth::user();
+
+        if (!$user->is_admin) {
+            return false;
+        }
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return [
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+        ];
+    }
+
     public function logout(Request $request)
     {
         $request->user()->tokens()->delete();

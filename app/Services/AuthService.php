@@ -10,5 +10,7 @@ interface AuthService
 
     public function login(array $data);
 
+    public function loginAdmin(array $data);
+
     public function logout(Request $request);
 }
