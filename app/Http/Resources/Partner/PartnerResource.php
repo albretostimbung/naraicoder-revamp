@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Partner;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PartnerResource extends JsonResource
@@ -18,7 +19,7 @@ class PartnerResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'website' => $this->website,
-            'image' => $this->image,
+            'image' => $this->image ? asset(Storage::url($this->image)) : null,
         ];
     }
 }

@@ -27,7 +27,7 @@ class UpdatePartnerRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:50'],
             'website' => ['required', 'string', 'max:100'],
-            'image' => ['required', 'string', 'max:255'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
         ];
     }
 
@@ -40,12 +40,10 @@ class UpdatePartnerRequest extends FormRequest
     {
         return [
             'name.required' => 'Name is required',
-            'major.required' => 'Major is required',
-            'address.required' => 'Address is required',
-            'occupation.required' => 'Occupation is required',
-            'email.required' => 'Email is required',
-            'email.email' => 'Email must be a valid email address',
-            'email.unique' => 'Email has already been taken',
+            'website.required' => 'Website is required',
+            'image.image' => 'Image must be an image',
+            'image.mimes' => 'Image must be a file of type: jpeg, png, jpg',
+            'image.max' => 'Image size must not be greater than 2048KB',
         ];
     }
 

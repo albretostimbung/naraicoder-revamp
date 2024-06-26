@@ -2,20 +2,24 @@
 
 namespace App\Http\Controllers\Api\V1\Partner;
 
+use Illuminate\Http\Request;
+use App\Services\PartnerService;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
+use App\Repositories\PartnerRepository;
+use App\Http\Resources\Partner\PartnerResource;
 use App\Http\Requests\Partner\StorePartnerRequest;
 use App\Http\Requests\Partner\UpdatePartnerRequest;
-use App\Http\Resources\Partner\PartnerResource;
-use App\Repositories\PartnerRepository;
 
 class PartnerController extends Controller
 {
     private $partnerRepository;
+    private $partnerService;
 
-    public function __construct(PartnerRepository $partnerRepository)
+    public function __construct(PartnerRepository $partnerRepository, PartnerService $partnerService)
     {
         $this->partnerRepository = $partnerRepository;
+        $this->partnerService = $partnerService;
     }
 
     public function index()
@@ -28,7 +32,7 @@ class PartnerController extends Controller
      */
     public function store(StorePartnerRequest $request)
     {
-        return ResponseFormatter::success(PartnerResource::make($this->partnerRepository->create($request->validated())));
+        return ResponseFormatter::success(PartnerResource::make($this->partnerService->create($request->validated())));
     }
 
     /**
@@ -44,7 +48,7 @@ class PartnerController extends Controller
      */
     public function update(UpdatePartnerRequest $request, string $id)
     {
-        return ResponseFormatter::success(PartnerResource::make($this->partnerRepository->update($id, $request->validated())));
+        return ResponseFormatter::success(PartnerResource::make($this->partnerService->update($id, $request->validated())));
     }
 
     /**
