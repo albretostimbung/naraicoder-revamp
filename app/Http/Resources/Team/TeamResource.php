@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Team;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class TeamResource extends JsonResource
@@ -19,7 +20,7 @@ class TeamResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'role' => $this->role,
-            'image' => $this->image,
+            'image' => $this->image ? asset(Storage::url($this->image)) : null,
         ];
     }
 }

@@ -8,14 +8,17 @@ use App\Http\Requests\Team\StoreTeamRequest;
 use App\Http\Requests\Team\UpdateTeamRequest;
 use App\Http\Resources\Team\TeamResource;
 use App\Repositories\TeamRepository;
+use App\Services\TeamService;
 
 class TeamController extends Controller
 {
     private $teamRepository;
+    private $teamService;
 
-    public function __construct(TeamRepository $teamRepository)
+    public function __construct(TeamRepository $teamRepository, TeamService $teamService)
     {
         $this->teamRepository = $teamRepository;
+        $this->teamService = $teamService;
     }
 
     public function index()
@@ -28,7 +31,7 @@ class TeamController extends Controller
      */
     public function store(StoreTeamRequest $request)
     {
-        return ResponseFormatter::success(TeamResource::make($this->teamRepository->create($request->validated())));
+        return ResponseFormatter::success(TeamResource::make($this->teamService->create($request->validated())));
     }
 
     /**
@@ -44,7 +47,7 @@ class TeamController extends Controller
      */
     public function update(UpdateTeamRequest $request, string $id)
     {
-        return ResponseFormatter::success(TeamResource::make($this->teamRepository->update($id, $request->validated())));
+        return ResponseFormatter::success(TeamResource::make($this->teamService->update($id, $request->validated())));
     }
 
     /**

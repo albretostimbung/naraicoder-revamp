@@ -15,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(\App\Services\OAuthService::class, \App\Services\Implement\OAuthServiceImpl::class);
         $this->app->bind(\App\Services\ArticleService::class, \App\Services\Implement\ArticleServiceImpl::class);
         $this->app->bind(\App\Services\PartnerService::class, \App\Services\Implement\PartnerServiceImpl::class);
+        $this->app->bind(\App\Services\TeamService::class, \App\Services\Implement\TeamServiceImpl::class);
         $this->app->bind(\App\Services\EventService::class, \App\Services\Implement\EventServiceImpl::class);
 
         $this->app->bind(\App\Repositories\UserRepository::class, \App\Repositories\Implement\UserRepositoryImpl::class);

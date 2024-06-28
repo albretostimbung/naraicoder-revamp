@@ -28,7 +28,7 @@ class UpdateTeamRequest extends FormRequest
             'name' => ['required', 'string', 'max:50'],
             'email' => ['required', 'email'],
             'role' => ['nullable', 'string'],
-            'image' => ['required', 'string', 'max:255'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
         ];
     }
 
@@ -41,12 +41,13 @@ class UpdateTeamRequest extends FormRequest
     {
         return [
             'name.required' => 'Name is required',
-            'major.required' => 'Major is required',
-            'address.required' => 'Address is required',
-            'occupation.required' => 'Occupation is required',
+            'name.string' => 'Name must be a string',
+            'name.max' => 'Name cannot be more than 50 characters',
             'email.required' => 'Email is required',
-            'email.email' => 'Email must be a valid email address',
-            'email.unique' => 'Email has already been taken',
+            'email.email' => 'Invalid email format',
+            'role.string' => 'Role must be a string',
+            'image.mimes' => 'Only JPEG, PNG, and JPG images are allowed',
+            'image.max' => 'Image size cannot be more than 2048 KB',
         ];
     }
 

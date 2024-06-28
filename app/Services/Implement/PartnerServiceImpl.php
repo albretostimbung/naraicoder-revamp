@@ -30,14 +30,20 @@ class PartnerServiceImpl implements PartnerService
 
     public function update($id, array $data)
     {
-        if (empty($data['image'])) {
-            $partner = $this->partnerRepository->getById($id);
+        $partner = $this->partnerRepository->getById($id);
 
+        if (empty($data['image'])) {
             return $this->partnerRepository->update($id, [
                 'name' => $data['name'],
                 'website' => $data['website'],
                 'image' => $partner->image,
             ]);
+        }
+
+        $filename = public_path('storage/' . $partner->image);
+
+        if ($partner->image && file_exists($filename)) {
+            unlink($filename);
         }
 
         return $this->partnerRepository->update($id, [

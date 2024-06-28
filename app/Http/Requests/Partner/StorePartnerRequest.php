@@ -27,7 +27,7 @@ class StorePartnerRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:50'],
             'website' => ['required', 'string', 'max:100'],
-            'image' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+            'image' => ['required', 'mimes:jpeg,png,jpg', 'max:2048'],
         ];
     }
 
@@ -41,7 +41,6 @@ class StorePartnerRequest extends FormRequest
         return [
             'name.required' => 'Name is required',
             'website.required' => 'Website is required',
-            'image.required' => 'Image is required',
             'image.image' => 'Image must be an image',
             'image.mimes' => 'Image must be a file of type: jpeg, png, jpg',
             'image.max' => 'Image size must not be greater than 2048KB',

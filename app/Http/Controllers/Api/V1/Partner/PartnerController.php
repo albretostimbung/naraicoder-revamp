@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1\Partner;
 use Illuminate\Http\Request;
 use App\Services\PartnerService;
 use App\Helpers\ResponseFormatter;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Repositories\PartnerRepository;
 use App\Http\Resources\Partner\PartnerResource;
