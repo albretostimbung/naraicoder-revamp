@@ -2,8 +2,9 @@
 
 namespace App\Http\Resources\Article;
 
-use App\Http\Resources\Auth\UserResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Resources\Auth\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ArticleResource extends JsonResource
@@ -20,7 +21,7 @@ class ArticleResource extends JsonResource
             'title' => $this->title,
             'slug' => $this->slug,
             'content' => $this->content,
-            'image' => $this->image,
+            'image' => $this->image ? asset(Storage::url($this->image)) : null,
             'user' => UserResource::make($this->user)
         ];
     }
