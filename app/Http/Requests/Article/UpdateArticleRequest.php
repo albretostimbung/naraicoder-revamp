@@ -27,7 +27,7 @@ class UpdateArticleRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:100'],
             'content' => ['required', 'string'],
-            'image' => ['required', 'string', 'max:255'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
         ];
     }
 
@@ -44,9 +44,9 @@ class UpdateArticleRequest extends FormRequest
             'title.max' => 'Title must be less than 100 characters',
             'content.required' => 'Content is required',
             'content.string' => 'Content must be a string',
-            'image.required' => 'Image is required',
-            'image.string' => 'Image must be a string',
-            'image.max' => 'Image must be less than 255 characters',
+            'image.image' => 'Image must be an image',
+            'image.mimes' => 'Image must be a jpeg, png, jpg',
+            'image.max' => 'Image size must not be greater than 2048KB',
         ];
     }
 

@@ -27,7 +27,7 @@ class StoreArticleRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:100'],
             'content' => ['required', 'string'],
-            'image' => ['required', 'string', 'max:255'],
+            'image' => ['required', 'mimes:jpeg,png,jpg', 'max:2048'],
         ];
     }
 
@@ -45,8 +45,8 @@ class StoreArticleRequest extends FormRequest
             'content.required' => 'Content is required',
             'content.string' => 'Content must be a string',
             'image.required' => 'Image is required',
-            'image.string' => 'Image must be a string',
-            'image.max' => 'Image must be less than 255 characters',
+            'image.mimes' => 'Only JPEG, PNG, and JPG images are allowed',
+            'image.max' => 'Image size must be less than 2MB',
         ];
     }
 
